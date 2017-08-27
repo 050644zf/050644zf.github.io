@@ -15,7 +15,7 @@
   </entry>
   <entry>
     <title><![CDATA[2017-8-27更新日志]]></title>
-    <url>%2F2017%2F08%2F27%2F2017-8-27%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97%2F</url>
+    <url>%2F2017%2F08%2F27%2F2017-8-27log%2F</url>
     <content type="text"><![CDATA[更新了评论系统，使用hypercomment评论系统 End of logs]]></content>
       <categories>
         <category>logs</category>
@@ -28,7 +28,7 @@
   </entry>
   <entry>
     <title><![CDATA[2017-8-11更新日志]]></title>
-    <url>%2F2017%2F08%2F11%2F2017-8-11%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97%2F</url>
+    <url>%2F2017%2F08%2F11%2F2017-8-11log%2F</url>
     <content type="text"><![CDATA[修复无法正确显示标题的bug 添加背景动画 全站通过CC BY-NC-SA 4.0协议进行授权 ###End of log###]]></content>
       <categories>
         <category>logs</category>
@@ -41,7 +41,7 @@
   </entry>
   <entry>
     <title><![CDATA[你好世界]]></title>
-    <url>%2F2017%2F08%2F11%2F%E4%BD%A0%E5%A5%BD%E4%B8%96%E7%95%8C%2F</url>
+    <url>%2F2017%2F08%2F11%2FHello-world%2F</url>
     <content type="text"><![CDATA[欢迎来到M31的夜空这是本博客的第一篇文章。 本博客使用托管于github上的hexo模板写作 在此感谢以下教程为完成本博客所作的努力： 在github上建立博客的教程 markdown语法说明中文版 next主题说明文档 欢迎关注！]]></content>
       <categories>
         <category>articles</category>
@@ -55,7 +55,7 @@
   </entry>
   <entry>
     <title><![CDATA[测试]]></title>
-    <url>%2F2017%2F08%2F09%2F%E6%B5%8B%E8%AF%95%2F</url>
+    <url>%2F2017%2F08%2F09%2Ftest%2F</url>
     <content type="text"><![CDATA[这是一篇测试文章##test##]]></content>
       <tags>
         <tag>test</tag>
