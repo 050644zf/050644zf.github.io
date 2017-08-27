@@ -276,10 +276,10 @@
         
           <div class="tag-cloud">
             <div class="tag-cloud-title">
-                目前共计 6 个标签
+                目前共计 7 个标签
             </div>
             <div class="tag-cloud-tags">
-              <a href="/tags/github/" style="font-size: 12px; color: #ccc">github</a> <a href="/tags/hexo/" style="font-size: 30px; color: #111">hexo</a> <a href="/tags/markdown/" style="font-size: 12px; color: #ccc">markdown</a> <a href="/tags/next/" style="font-size: 30px; color: #111">next</a> <a href="/tags/test/" style="font-size: 12px; color: #ccc">test</a> <a href="/tags/update/" style="font-size: 12px; color: #ccc">update</a>
+              <a href="/tags/github/" style="font-size: 12px; color: #ccc">github</a> <a href="/tags/hexo/" style="font-size: 30px; color: #111">hexo</a> <a href="/tags/hypercomment/" style="font-size: 12px; color: #ccc">hypercomment</a> <a href="/tags/markdown/" style="font-size: 12px; color: #ccc">markdown</a> <a href="/tags/next/" style="font-size: 21px; color: #6f6f6f">next</a> <a href="/tags/test/" style="font-size: 12px; color: #ccc">test</a> <a href="/tags/update/" style="font-size: 21px; color: #6f6f6f">update</a>
             </div>
           </div>
         
@@ -301,12 +301,7 @@
           
   <div class="comments" id="comments">
     
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
+      <div id="hypercomments_widget"></div>
     
   </div>
 
@@ -346,7 +341,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -368,7 +363,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -609,36 +604,34 @@
 
   
 
-    
-      <script id="dsq-count-scr" src="https://zf.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/tags/index.html';
-          this.page.identifier = 'tags/index.html';
-          this.page.title = 'Tags';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://zf.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
-
-  
-
 
 
 
 	
 
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 94884, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 94884, xid: "tags/index.html"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/94884/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
 
 
-
-
-  
 
 
 
