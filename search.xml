@@ -47,22 +47,22 @@
         <category>logs</category>
       </categories>
       <tags>
-        <tag>update</tag>
         <tag>hexo</tag>
         <tag>hypercomment</tag>
+        <tag>update</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[2017-8-11更新日志]]></title>
     <url>%2F2017%2F08%2F11%2F2017-8-11log%2F</url>
-    <content type="text"><![CDATA[修复无法正确显示标题的bug 添加背景动画 全站通过CC BY-NC-SA 4.0协议进行授权 ###End of log###]]></content>
+    <content type="text"><![CDATA[修复无法正确显示标题的bug 添加背景动画 全站通过CC BY-NC-SA 4.0协议进行授权 End of logs]]></content>
       <categories>
         <category>logs</category>
       </categories>
       <tags>
-        <tag>update</tag>
         <tag>hexo</tag>
         <tag>next</tag>
+        <tag>update</tag>
       </tags>
   </entry>
   <entry>
@@ -74,8 +74,8 @@
       </categories>
       <tags>
         <tag>hexo</tag>
-        <tag>next</tag>
         <tag>markdown</tag>
+        <tag>next</tag>
         <tag>github</tag>
       </tags>
   </entry>
