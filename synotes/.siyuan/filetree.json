@@ -1,0 +1,15 @@
+{
+  "name": "",
+  "path": "/",
+  "isDir": true,
+  "children": [
+    {
+      "name": "Weekly_Report.md",
+      "path": "/Weekly_Report.md"
+    },
+    {
+      "name": "Archives_Manager.md",
+      "path": "/Archives_Manager.md"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html><html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" id="themeDefaultStyle" href="http://127.0.0.1:6806/stage/build/export/base.css?1.1.83"/>
+    <link rel="stylesheet" type="text/css" id="themeStyle" href="http://127.0.0.1:6806/appearance/themes/midnight/theme.css?1.1.83"/>
+    <script src="http://127.0.0.1:6806/stage/build/export/vditor-method.js?1.1.83"></script>
+    <style>
+        body {background-color: transparent;color: var(--b3-theme-on-background);}
+        a {color: var(--b3-theme-primary);}
+        .vditor-reset{font-size:16px !important;}
+.vditor-reset pre > code { white-space: pre-wrap !important;}
+        body {background-color: var(--b3-theme-background)}
+    </style>
+</head>
+<body>
+<svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs>
+  <symbol id="iconCopy" viewBox="0 0 32 32">
+    <path d="M22.545-0h-17.455c-1.6 0-2.909 1.309-2.909 2.909v20.364h2.909v-20.364h17.455v-2.909zM26.909 5.818h-16c-1.6 0-2.909 1.309-2.909 2.909v20.364c0 1.6 1.309 2.909 2.909 2.909h16c1.6 0 2.909-1.309 2.909-2.909v-20.364c0-1.6-1.309-2.909-2.909-2.909zM26.909 29.091h-16v-20.364h16v20.364z"></path>
+  </symbol>
+</svg>
+<div class="vditor-reset" style="max-width: 768px;margin: 0 auto;" id="preview"><h1 id="20210417165355-s1qjgah">文献管理</h1>
+<h2 id="20210417165405-ba4upqz">Compressive Sensing Spectroscopy Using a Residual Convolutional Neural Network</h2>
+<p id="20210417165442-ygk39e8">Tags: CS ResCNN 光谱学</p>
+<p id="20210417165842-d7ousjj">薄膜滤光片建立压缩感知光谱仪</p>
+<p id="20210417170000-tkakv22">给定波长的透过率由以下公式决定</p>
+<div class="language-math" id="20210417172752-mu8otbi">T(\lambda)=1-\frac{1}{2}(|\rho_{TE}(\lambda)|^2+|\rho_{TM}(\lambda)|^2)</div>
+<p id="20210417172903-a5wp78p" updated="20210418103430">其中， <span class="language-math">\rho_{TE}(\lambda)</span> 和 <span class="language-math">\rho_{TM}(\lambda)</span> 为反射系数在对应 TE 模和 TM 模下的幅值，可通过<strong>算法 1</strong> 计算</p>
+<p id="20210418103430-3y0r12e" updated="20210418104645">观察值<span class="language-math">\mathbf{y}\in\mathbb{R}^{M\times1}</span> 与入射光原始值<span class="language-math">\mathbf{x}\in\mathbb{R}^{N\times1}</span>的关系如下</p>
+<div class="language-math" id="20210418104529-x5fqzlz" updated="20210418104531">\mathbf{y=Tx}</div>
+<p id="20210418104700-kr9b54y" updated="20210418163951">其中<span class="language-math">\mathbf{T}\in\mathbb{R}^{M\times N}</span>为传感矩阵，<span class="language-math">M&lt;N</span></p>
+<p id="20210418163951-nij4xgt" updated="20210418164239">使用 ResCNN 来客服稀疏重建的极限</p>
+<p id="20210418111738-zk9arpm" updated="20210418163605"><img src="https://b3logfile.com/siyuan/1605926113063/assets/image-20210418163604-m6o0s02.png" alt="image.png" /></p>
+<p id="20210418164144-ind2swb"></p>
+<p id="20210418163612-lx8klng"></p>
+</div>
+<script>
+    window.siyuan = {
+      config: { appearance: { mode: 1 }},
+      languages: {copy:"复制"}
+    };
+    const previewElement = document.getElementById('preview');
+    Vditor.codeRender(previewElement);
+    Vditor.highlightRender({"lineNumber":true,"style":"dracula"}, previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.mathRender(previewElement, {
+        cdn: "http://127.0.0.1:6806/stage/vditor",
+        math: {"inlineDigit":false,"engine":"MathJax"},
+    });
+    Vditor.mermaidRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.flowchartRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.graphvizRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.chartRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.mindmapRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.abcRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.plantumlRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.mediaRender(previewElement);
+    document.querySelectorAll(".vditor-copy").forEach((item) => {
+      item.addEventListener("click", (event) => {
+            navigator.clipboard.writeText(item.nextElementSibling.textContent.trimEnd());
+            item.firstElementChild.setAttribute("aria-label", "已复制");
+            event.preventDefault();
+            event.stopPropagation();
+      })
+    });
+</script></body></html>
