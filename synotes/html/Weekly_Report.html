@@ -1,0 +1,142 @@
+<!DOCTYPE html><html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" id="themeDefaultStyle" href="http://127.0.0.1:6806/stage/build/export/base.css?1.1.83"/>
+    <link rel="stylesheet" type="text/css" id="themeStyle" href="http://127.0.0.1:6806/appearance/themes/daylight/theme.css?1.1.83"/>
+    <script src="http://127.0.0.1:6806/stage/build/export/vditor-method.js?1.1.83"></script>
+    <style>
+        body {background-color: transparent;color: var(--b3-theme-on-background);}
+        a {color: var(--b3-theme-primary);}
+        .vditor-reset{font-size:16px !important;}
+.vditor-reset pre > code { white-space: pre-wrap !important;}
+        body {background-color: var(--b3-theme-background)}
+    </style>
+</head>
+<body>
+<svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs>
+  <symbol id="iconCopy" viewBox="0 0 32 32">
+    <path d="M22.545-0h-17.455c-1.6 0-2.909 1.309-2.909 2.909v20.364h2.909v-20.364h17.455v-2.909zM26.909 5.818h-16c-1.6 0-2.909 1.309-2.909 2.909v20.364c0 1.6 1.309 2.909 2.909 2.909h16c1.6 0 2.909-1.309 2.909-2.909v-20.364c0-1.6-1.309-2.909-2.909-2.909zM26.909 29.091h-16v-20.364h16v20.364z"></path>
+  </symbol>
+</svg>
+<div class="vditor-reset" style="max-width: 768px;margin: 0 auto;" id="preview"><h1 id="20210416194627-683qn4g">4 月 16 日周报</h1>
+<p id="20210416194627-nuzp09l">这周，我们在小组会上讨论了高光谱建模及算法的问题。本周我们着重于噪声建模问题，我们分析了系统各环节可能出现的噪声，并发现噪声更多来自于器件例如光学元件和传感器。</p>
+<p id="20210416194627-5xi35ny">会后，我学习了有关噪声的相关知识，学习了常见噪声如高斯噪声，椒盐噪声等噪声的特征以及去除方法。</p>
+<table id="20210416204446-tkh7sks">
+<thead>
+<tr>
+<th>噪声类型</th>
+<th>分布函数/特征</th>
+<th>场景</th>
+<th>去除方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>高斯噪声</td>
+<td>符合均值为 <span class="language-math">\bar{z}</span> ，方差为 <span class="language-math">\sigma</span> 的高斯分布</td>
+<td>传感器热噪声、电路噪声等</td>
+<td>均值滤波器<br />图像叠加<br />维纳滤波等<sup>1</sup></td>
+</tr>
+<tr>
+<td>椒盐噪声</td>
+<td>随机亮点/暗点</td>
+<td>传感器读出错误等</td>
+<td>中值滤波器等<sup>1</sup></td>
+</tr>
+<tr>
+<td>泊松噪声</td>
+<td>符合泊松分布</td>
+<td>低照度图像、高增益图像<sup>2</sup></td>
+<td>自适应中值滤波器等<sup>1</sup></td>
+</tr>
+<tr>
+<td>乘性噪声</td>
+<td>符合瑞利或伽玛分布</td>
+<td>相干图像系统，例如激光等</td>
+<td>同态滤波（乘性 → 加性)<sup>3</sup></td>
+</tr>
+</tbody>
+</table>
+<p id="20210416205725-2yn6k2l">接下来的问题包括：</p>
+<ul id="20210417195234-6c6lm6r">
+<li id="20210416210645-mk587da">哪些噪声对成像和分析有显著影响？</li>
+<li id="20210416210721-q4rsetj">如何合理去除这些噪声？</li>
+</ul>
+<p id="20210416205238-5fmmu4w" updated="20210418164204">Ref:<br />
+[1]《数字图像处理》<br />
+[2] <a href="https://blog.csdn.net/Barry_J/article/details/79718018">浅析“高斯白噪声”，“泊松噪声”，“椒盐噪声”的区别</a><br />
+[3] <a href="https://blog.csdn.net/Sousky/article/details/89350093">乘性噪声理解</a></p>
+<h1 id="20210417165322-w4mmgmr" updated="20210420155305">4 月 23 日周报</h1>
+<p id="20210420155307-4pm44a8" updated="20210422093342">本周我们在小组会上讨论了关于如何构建稀疏基的问题，会议上主要讨论了论文《Compressive Sensing Spectroscopy Using a Residual Convolutional Neural Network》，对其所使用的残差卷积网络和字典学习方法进行探讨。</p>
+<p id="20210422094246-yq0u0xt" updated="20210422094303">会后，我学习了学习字典的相关知识。</p>
+<p id="20210422094830-fq0sryy" updated="20210422095911">给定字典<span class="language-math">D=[d_1,d_2,...,d_K]\in \mathbb{R}^{n\times K}</span>，使得信号<span class="language-math">X=[x_1,x_2,...,x_n]\in \mathbb{R}^{n\times N}</span>可被表示为</p>
+<div class="language-math" id="20210422095911-7r8wsks" updated="20210422095913">X\approx DA</div>
+<p id="20210422095959-x32terg" updated="20210422100247">其中<span class="language-math">A=[\alpha_1,\alpha_2,...,\alpha_N]\in \mathbb{R}^{K\times N}</span> 为<span class="language-math">X</span>在<span class="language-math">D</span>下的表示系数，当<span class="language-math">\alpha_i</span>中非零元素远小于<span class="language-math">K</span>时，则称该向量为稀疏的。</p>
+<p id="20210422100247-nwpcfta" updated="20210422100350">则字典学习优化问题可表示为：</p>
+<div class="language-math" id="20210422100351-1ucolur" updated="20210422100352">\min _{D, A}\left\{\|X-D A\|_{F}^{2}+\lambda_{A} g_{A}(A)\right\}</div>
+<p id="20210422100404-mmy01xm" updated="20210422100455">其中<span class="language-math">g_A()</span>为求稀疏度函数，<span class="language-math">\lambda_A</span>为归一化参数。</p>
+<p id="20210422101121-6dosrji" updated="20210422101139">字典学习算法总结：</p>
+<table id="20210422100456-0zct308" updated="20210422100543">
+<thead>
+<tr>
+<th>算法</th>
+<th>主要思想</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sparsenet</td>
+<td>最大似然估计</td>
+</tr>
+<tr>
+<td>MOD</td>
+<td><span class="language-math">l_o</span>范数衡量稀疏性<br />最小均方误差</td>
+</tr>
+<tr>
+<td>K-SVD</td>
+<td>正交匹配追踪(OMP)<br />奇异值分解(SVD)</td>
+</tr>
+<tr>
+<td>ODL</td>
+<td>每次迭代仅处理一个样本</td>
+</tr>
+</tbody>
+</table>
+<p id="20210422101146-1g98rvy"></p>
+<p id="20210422100725-khxic2a" updated="20210422101148">Ref:</p>
+<p id="20210422101148-vwlleig" updated="20210422101220">[1] 练秋生, 石保顺, 陈书贞. <a href="http://www.aas.net.cn/fileZDHXB/journal/article/zdhxb/2015/2/PDF/2015-2-240.pdf">字典学习模型、算法及其应用研究进展</a>. 自动化学报, 2015, 41(2): 240−260</p>
+</div>
+<script>
+    window.siyuan = {
+      config: { appearance: { mode: 0 }},
+      languages: {copy:"复制"}
+    };
+    const previewElement = document.getElementById('preview');
+    Vditor.codeRender(previewElement);
+    Vditor.highlightRender({"lineNumber":true,"style":"github"}, previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.mathRender(previewElement, {
+        cdn: "http://127.0.0.1:6806/stage/vditor",
+        math: {"inlineDigit":false,"engine":"MathJax"},
+    });
+    Vditor.mermaidRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.flowchartRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.graphvizRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.chartRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.mindmapRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.abcRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.plantumlRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.mediaRender(previewElement);
+    document.querySelectorAll(".vditor-copy").forEach((item) => {
+      item.addEventListener("click", (event) => {
+            navigator.clipboard.writeText(item.nextElementSibling.textContent.trimEnd());
+            item.firstElementChild.setAttribute("aria-label", "已复制");
+            event.preventDefault();
+            event.stopPropagation();
+      })
+    });
+</script></body></html>

@@ -1,7 +1,7 @@
 {
    "sync": true,
    "publish": false,
-   "updated": 1618735361526,
+   "updated": 1619057551105,
    "refCreateSavePath": "",
    "createDocNameTemplate": "",
    "dailyNoteSavePath": "/daily note/{{now | date \"2006/01\"}}/{{now | date \"2006-01-02\"}}.md",
