@@ -23,7 +23,46 @@
     <path d="M22.545-0h-17.455c-1.6 0-2.909 1.309-2.909 2.909v20.364h2.909v-20.364h17.455v-2.909zM26.909 5.818h-16c-1.6 0-2.909 1.309-2.909 2.909v20.364c0 1.6 1.309 2.909 2.909 2.909h16c1.6 0 2.909-1.309 2.909-2.909v-20.364c0-1.6-1.309-2.909-2.909-2.909zM26.909 29.091h-16v-20.364h16v20.364z"></path>
   </symbol>
 </svg>
-<div class="vditor-reset" style="max-width: 768px;margin: 0 auto;" id="preview"><h1 id="20210416194627-683qn4g">4 月 16 日周报</h1>
+<div class="vditor-reset" style="max-width: 768px;margin: 0 auto;" id="preview"><h1 id="20210417165322-w4mmgmr" updated="20210420155305">4 月 23 日周报</h1>
+<p id="20210420155307-4pm44a8" updated="20210422093342">本周我们在小组会上讨论了关于如何构建稀疏基的问题，会议上主要讨论了论文《Compressive Sensing Spectroscopy Using a Residual Convolutional Neural Network》，对其所使用的残差卷积网络和字典学习方法进行探讨。</p>
+<p id="20210422094246-yq0u0xt" updated="20210422094303">会后，我学习了学习字典的相关知识。</p>
+<p id="20210422094830-fq0sryy" updated="20210422095911">给定字典<span class="language-math">D=[d_1,d_2,...,d_K]\in \mathbb{R}^{n\times K}</span>，使得信号<span class="language-math">X=[x_1,x_2,...,x_n]\in \mathbb{R}^{n\times N}</span>可被表示为</p>
+<div class="language-math" id="20210422095911-7r8wsks" updated="20210422095913">X\approx DA</div>
+<p id="20210422095959-x32terg" updated="20210422100247">其中<span class="language-math">A=[\alpha_1,\alpha_2,...,\alpha_N]\in \mathbb{R}^{K\times N}</span> 为<span class="language-math">X</span>在<span class="language-math">D</span>下的表示系数，当<span class="language-math">\alpha_i</span>中非零元素远小于<span class="language-math">K</span>时，则称该向量为稀疏的。</p>
+<p id="20210422100247-nwpcfta" updated="20210422100350">则字典学习优化问题可表示为：</p>
+<div class="language-math" id="20210422100351-1ucolur" updated="20210422100352">\min _{D, A}\left\{\|X-D A\|_{F}^{2}+\lambda_{A} g_{A}(A)\right\}</div>
+<p id="20210422100404-mmy01xm" updated="20210422100455">其中<span class="language-math">g_A()</span>为求稀疏度函数，<span class="language-math">\lambda_A</span>为归一化参数。</p>
+<p id="20210422101121-6dosrji" updated="20210422101139">字典学习算法总结：</p>
+<table id="20210422100456-0zct308" updated="20210422100543">
+<thead>
+<tr>
+<th>算法</th>
+<th>主要思想</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sparsenet</td>
+<td>最大似然估计</td>
+</tr>
+<tr>
+<td>MOD</td>
+<td><span class="language-math">l_o</span>范数衡量稀疏性<br />最小均方误差</td>
+</tr>
+<tr>
+<td>K-SVD</td>
+<td>正交匹配追踪(OMP)<br />奇异值分解(SVD)</td>
+</tr>
+<tr>
+<td>ODL</td>
+<td>每次迭代仅处理一个样本</td>
+</tr>
+</tbody>
+</table>
+<p id="20210422101146-1g98rvy"></p>
+<p id="20210422100725-khxic2a" updated="20210422101148">Ref:</p>
+<p id="20210422101148-vwlleig" updated="20210422101220">[1] 练秋生, 石保顺, 陈书贞. <a href="http://www.aas.net.cn/fileZDHXB/journal/article/zdhxb/2015/2/PDF/2015-2-240.pdf">字典学习模型、算法及其应用研究进展</a>. 自动化学报, 2015, 41(2): 240−260</p>
+<h1 id="20210416194627-683qn4g">4 月 16 日周报</h1>
 <p id="20210416194627-nuzp09l">这周，我们在小组会上讨论了高光谱建模及算法的问题。本周我们着重于噪声建模问题，我们分析了系统各环节可能出现的噪声，并发现噪声更多来自于器件例如光学元件和传感器。</p>
 <p id="20210416194627-5xi35ny">会后，我学习了有关噪声的相关知识，学习了常见噪声如高斯噪声，椒盐噪声等噪声的特征以及去除方法。</p>
 <table id="20210416204446-tkh7sks">
@@ -71,45 +110,6 @@
 [1]《数字图像处理》<br />
 [2] <a href="https://blog.csdn.net/Barry_J/article/details/79718018">浅析“高斯白噪声”，“泊松噪声”，“椒盐噪声”的区别</a><br />
 [3] <a href="https://blog.csdn.net/Sousky/article/details/89350093">乘性噪声理解</a></p>
-<h1 id="20210417165322-w4mmgmr" updated="20210420155305">4 月 23 日周报</h1>
-<p id="20210420155307-4pm44a8" updated="20210422093342">本周我们在小组会上讨论了关于如何构建稀疏基的问题，会议上主要讨论了论文《Compressive Sensing Spectroscopy Using a Residual Convolutional Neural Network》，对其所使用的残差卷积网络和字典学习方法进行探讨。</p>
-<p id="20210422094246-yq0u0xt" updated="20210422094303">会后，我学习了学习字典的相关知识。</p>
-<p id="20210422094830-fq0sryy" updated="20210422095911">给定字典<span class="language-math">D=[d_1,d_2,...,d_K]\in \mathbb{R}^{n\times K}</span>，使得信号<span class="language-math">X=[x_1,x_2,...,x_n]\in \mathbb{R}^{n\times N}</span>可被表示为</p>
-<div class="language-math" id="20210422095911-7r8wsks" updated="20210422095913">X\approx DA</div>
-<p id="20210422095959-x32terg" updated="20210422100247">其中<span class="language-math">A=[\alpha_1,\alpha_2,...,\alpha_N]\in \mathbb{R}^{K\times N}</span> 为<span class="language-math">X</span>在<span class="language-math">D</span>下的表示系数，当<span class="language-math">\alpha_i</span>中非零元素远小于<span class="language-math">K</span>时，则称该向量为稀疏的。</p>
-<p id="20210422100247-nwpcfta" updated="20210422100350">则字典学习优化问题可表示为：</p>
-<div class="language-math" id="20210422100351-1ucolur" updated="20210422100352">\min _{D, A}\left\{\|X-D A\|_{F}^{2}+\lambda_{A} g_{A}(A)\right\}</div>
-<p id="20210422100404-mmy01xm" updated="20210422100455">其中<span class="language-math">g_A()</span>为求稀疏度函数，<span class="language-math">\lambda_A</span>为归一化参数。</p>
-<p id="20210422101121-6dosrji" updated="20210422101139">字典学习算法总结：</p>
-<table id="20210422100456-0zct308" updated="20210422100543">
-<thead>
-<tr>
-<th>算法</th>
-<th>主要思想</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Sparsenet</td>
-<td>最大似然估计</td>
-</tr>
-<tr>
-<td>MOD</td>
-<td><span class="language-math">l_o</span>范数衡量稀疏性<br />最小均方误差</td>
-</tr>
-<tr>
-<td>K-SVD</td>
-<td>正交匹配追踪(OMP)<br />奇异值分解(SVD)</td>
-</tr>
-<tr>
-<td>ODL</td>
-<td>每次迭代仅处理一个样本</td>
-</tr>
-</tbody>
-</table>
-<p id="20210422101146-1g98rvy"></p>
-<p id="20210422100725-khxic2a" updated="20210422101148">Ref:</p>
-<p id="20210422101148-vwlleig" updated="20210422101220">[1] 练秋生, 石保顺, 陈书贞. <a href="http://www.aas.net.cn/fileZDHXB/journal/article/zdhxb/2015/2/PDF/2015-2-240.pdf">字典学习模型、算法及其应用研究进展</a>. 自动化学报, 2015, 41(2): 240−260</p>
 </div>
 <script>
     window.siyuan = {
