@@ -30,7 +30,18 @@ $$
 ![image.png](assets/image-20210418163604-m6o0s02.png)
 {: id="20210418111738-zk9arpm" updated="20210418163605"}
 
-{: id="20210423153726-sbqp39q"}
+{: id="20210418163612-lx8klng" updated="20210423150121"}
+
+## Signal Recovery From Random Measurements Via Orthogonal Matching Pursuit
+{: id="20210423150116-yjj8imd" updated="20210423150120"}
+
+Tropp, J. A., and A. C. Gilbert. “[Signal Recovery From Random Measurements Via Orthogonal Matching Pursuit.](http://www.math.lsa.umich.edu/~annacg/papers/TG05-signal-recovery-TR.pdf)” IEEE Transactions on Information Theory, vol. 53, no. 12, 2007, pp. 4655–4666.
+{: id="20210423150123-y0fzymi" updated="20210423150332"}
+
+Tags: #CS# #OMP# #高斯测量矩阵#
+{: id="20210423150337-a7reisq" updated="20210423150442"}
+
+{: id="20210423150443-mqr482u"}
 
 
 {: id="20210417165355-yb2hih8" type="doc"}

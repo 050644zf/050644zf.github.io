@@ -1,0 +1,340 @@
+<!DOCTYPE html><html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" id="themeDefaultStyle" href="http://127.0.0.1:6806/stage/build/export/base.css?1.1.83"/>
+    <link rel="stylesheet" type="text/css" id="themeStyle" href="http://127.0.0.1:6806/appearance/themes/daylight/theme.css?1.1.83"/>
+    <script src="http://127.0.0.1:6806/stage/build/export/vditor-method.js?1.1.83"></script>
+    <style>
+        body {background-color: transparent;color: var(--b3-theme-on-background);}
+        a {color: var(--b3-theme-primary);}
+        .vditor-reset{font-size:16px !important;}
+.vditor-reset pre > code { white-space: pre-wrap !important;}
+        body {background-color: var(--b3-theme-background)}
+    </style>
+</head>
+<body>
+<svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs>
+  <symbol id="iconCopy" viewBox="0 0 32 32">
+    <path d="M22.545-0h-17.455c-1.6 0-2.909 1.309-2.909 2.909v20.364h2.909v-20.364h17.455v-2.909zM26.909 5.818h-16c-1.6 0-2.909 1.309-2.909 2.909v20.364c0 1.6 1.309 2.909 2.909 2.909h16c1.6 0 2.909-1.309 2.909-2.909v-20.364c0-1.6-1.309-2.909-2.909-2.909zM26.909 29.091h-16v-20.364h16v20.364z"></path>
+  </symbol>
+</svg>
+<div class="vditor-reset" style="max-width: 768px;margin: 0 auto;" id="preview"><h1 id="20210507101547-wjuwr2q" updated="20210507154524">稀疏基整理</h1>
+<h2 id="20210507101815-o0kwwrw" updated="20210507132935">傅里叶相关变换基</h2>
+<h3 id="20210507103748-g9jf5ju" updated="20210507132537">离散傅里叶变换 DFT</h3>
+<p id="20210507132736-7ls6uwt" updated="20210507132742">DFT 定义</p>
+<div class="language-math" id="20210507104152-6q13xp9" updated="20210507105456">X(k)=\sum_{n=0}^{N-1} x(n) e^{-j \frac{2 \pi}{N} k n}=\sum_{n=0}^{N-1} x(n) W_{N}^{k n}</div>
+<p id="20210507102424-s7t8bqw" updated="20210507132402">矩阵表示：</p>
+<div class="language-math" id="20210507110129-nvfqorr" updated="20210507110131">\left[\begin{array}{c}
+X(0) \\
+X(1) \\
+X(2) \\
+\vdots \\
+X(N-1)
+\end{array}\right]=\left[\begin{array}{cccc}
+1 &amp; 1 &amp; 1 &amp; \cdots &amp; 1  \\
+1 &amp; W_{N}^{1} &amp; W_{N}^{2} &amp; \cdots &amp; W_{N}^{N-1}  \\
+1 &amp; W_{N}^{2} &amp; W_{N}^{4} &amp; \cdots &amp; W_{N}^{2(N-1)}  \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots  \\
+1 &amp; W_{N}^{N-1} &amp; W_{N}^{2(N-1)} &amp; \cdots &amp; W_{N}^{(N-1)(N-1)}
+\end{array}\right]
+\left[\begin{array}{c}
+x(0) \\
+x(1) \\
+x(2) \\
+\vdots \\
+x(N-1)
+\end{array}\right]</div>
+<p id="20210507132408-uyuddt1" updated="20210507132949">归一化得基：</p>
+<div class="language-math" id="20210507132417-o673tpl" updated="20210507132418">P=\frac{1}{\sqrt{N}}\left[\begin{array}{ccccc}
+1 &amp; 1 &amp; 1 &amp; \cdots &amp; 1 \\
+1 &amp; W_{N}^{1} &amp; W_{N}^{2} &amp; \cdots &amp; W_{N}^{N-1} \\
+1 &amp; W_{N}^{2} &amp; W_{N}^{4} &amp; \cdots &amp; W_{N}^{2(N-1)} \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+1 &amp; W_{N}^{N-1} &amp; W_{N}^{2(N-1)} &amp; \cdots &amp; W_{N}^{(N-1)(N-1)}
+\end{array}\right]</div>
+<p id="20210507132353-28u0g9j" updated="20210507132408">Matlab 实现：</p>
+<pre id="20210507105657-xg1bz7r" updated="20210507105659"><code class="language-matlab">dftmtx(N)/sqrt(N)
+</code></pre>
+<p id="20210507132958-azsch47"></p>
+<h3 id="20210507132406-98cpeg0" updated="20210507133002">快速傅里叶变换 FFT</h3>
+<p id="20210507132751-todbqrd" updated="20210507133327">使用库利-图基等算法简化 DFT 计算</p>
+<p id="20210507133329-s0320l4" updated="20210507133335">Matlab 实现：</p>
+<pre id="20210507133335-d6cgwny" updated="20210507133337"><code class="language-matlab">fft(eye(N))/sqrt(N)
+</code></pre>
+<p id="20210507133421-dvt76hn"></p>
+<h3 id="20210507133401-593fuof" updated="20210507135405">离散余弦变换 DCT</h3>
+<p id="20210507140245-qid05cu" updated="20210507140308">类似于 DFT，但仅使用实数</p>
+<p id="20210507135405-2bakhy7" updated="20210507135501">DCT 定义</p>
+<div class="language-math" id="20210507135501-tk32ygt" updated="20210507135502">f_m =\sqrt{\frac{2}{n}} \sum_{k=0}^{n-1} x_k \cos \left[\frac{\pi}{n} m \left(k+\frac{1}{2}\right) \right]</div>
+<p id="20210507135515-q17sol7" updated="20210507135912">Matlab 实现：</p>
+<pre id="20210507135912-1c9wfi4" updated="20210507135915"><code class="language-matlab">dctmtx(N)
+</code></pre>
+<p id="20210507152827-env05lb"></p>
+<h3 id="20210507144149-p47cv8g" updated="20210507152827">离散沃尔什-哈达玛变换 DHT</h3>
+<p id="20210507150349-i272nga" updated="20210507150432">DHT 与尺度为 2 的 DFT 事实等价</p>
+<p id="20210507145343-2npcck2" updated="20210507145428">其变换基可由下式递归推导：</p>
+<div class="language-math" id="20210507145428-lw05ij3" updated="20210507150123">H_1 = \frac{1}{\sqrt2} \begin{pmatrix} 1 &amp; 1 \\1 &amp; -1 \end{pmatrix}</div>
+<div class="language-math" id="20210507150246-2koaiyh" updated="20210507150248">H_m = \frac{1}{\sqrt2} \begin{pmatrix} H_{m-1} &amp; H_{m-1} \\ H_{m-1} &amp; -H_{m-1} \end{pmatrix}</div>
+<p id="20210507150342-a3w73om"></p>
+<h2 id="20210507152846-rensg90" updated="20210507152855">小波相关变换基</h2>
+<h3 id="20210507135924-hj3hot8" updated="20210507152846">离散小波变换 DWT</h3>
+<p id="20210507141348-xgi8456" updated="20210507141950">使用不同的小波的平移和变换来匹配波形</p>
+<p id="20210507141953-wjo4u9j" updated="20210507142040">常用小波有 Haar 小波、多贝西小波等</p>
+<p id="20210507142041-yprc9tz" updated="20210507142047">Matlab 实现：</p>
+<pre id="20210507142047-i1elo84" updated="20210507142103"><code class="language-matlab">dwt(x,wname)
+% wname为使用的小波种类
+</code></pre>
+<p id="20210507142152-9xwt15f"></p>
+<h3 id="20210507142704-vob2sb6" updated="20210507143216">啁啾变换 Chirplet transform</h3>
+<p id="20210507142702-4lk4ikh" updated="20210507142949">与波不同，啁啾为频率随时间变化的信号</p>
+<p id="20210507142910-5tp9ndv" updated="20210507203120"><a href="https://www.mathworks.com/matlabcentral/fileexchange/72303-chirplet-transform?s_tid=srchtitle">Matlab 实现</a></p>
+<blockquote id="20210507154922-32d8g4b" updated="20210507154923">
+<p id="20210507154923-4h68zrj" updated="20210507155144">Steve Mann, Simon Haykin,<a href="https://ieeexplore.ieee.org/document/482123"> The Chirplet Transform: Physical Considerations</a>, IEEE TRANSACTIONS ON SIGNAL PROCESSING,VOL. 43, NO. 11, NOVEMBER 1995</p>
+</blockquote>
+<p id="20210507143201-1lk9yh8"></p>
+<h3 id="20210507143159-vqodv03" updated="20210507144056">曲波变换 Curvelet transform</h3>
+<p id="20210507143847-8psc44o" updated="20210507144003">与小波不同，曲线波具有方向性，多分辨率等特性。</p>
+<p id="20210507144010-lspul0q" updated="20210507203215"><a href="http://www.curvelet.org/download.html">Matlab 实现 1</a>            <a href="https://blog.csdn.net/u014593748/article/details/68127499?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522162036932116780255262696%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&amp;request_id=162036932116780255262696&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_v2~rank_v29-3-68127499.pc_search_result_cache&amp;utm_term=Curvelet&amp;spm=1018.2226.3001.4187">介绍</a></p>
+<p id="20210507144138-hiyevx6" updated="20210507222708"><a href="https://www.mathworks.com/matlabcentral/fileexchange/31559-ridgelet-and-curvelet-first-generation-toolbox?s_tid=srchtitle">Matlab 实现 2</a></p>
+<p id="20210507153434-53hdo34"></p>
+<p id="20210507153433-a3xtak0" updated="20210507153524">除上述方法外还有诸如 Bandlet， Contourlet 等变换</p>
+<p id="20210507153526-d1y1kqv"></p>
+<h2 id="20210507145328-k5zbi65" updated="20210507152910">其它方法</h2>
+<h3 id="20210507152911-dt8ftme" updated="20210507152952">学习字典 Learning Dictionary</h3>
+<p id="20210507152945-sj5cztw" updated="20210422095911">给定字典<span class="language-math">D=[d_1,d_2,...,d_K]\in \mathbb{R}^{n\times K}</span>，使得信号<span class="language-math">X=[x_1,x_2,...,x_n]\in \mathbb{R}^{n\times N}</span>可被表示为</p>
+<div class="language-math" id="20210507152945-acowtc0" updated="20210422095913">X\approx DA</div>
+<p id="20210507152945-haefh4e" updated="20210422100247">其中<span class="language-math">A=[\alpha_1,\alpha_2,...,\alpha_N]\in \mathbb{R}^{K\times N}</span> 为<span class="language-math">X</span>在<span class="language-math">D</span>下的表示系数，当<span class="language-math">\alpha_i</span>中非零元素远小于<span class="language-math">K</span>时，则称该向量为稀疏的。</p>
+<p id="20210507152945-g2m7wsk" updated="20210422100350">则字典学习优化问题可表示为：</p>
+<div class="language-math" id="20210507152945-4sjruea" updated="20210422100352">\min _{D, A}\left\{\|X-D A\|_{F}^{2}+\lambda_{A} g_{A}(A)\right\}</div>
+<p id="20210507152945-etq87on" updated="20210422100455">其中<span class="language-math">g_A()</span>为求稀疏度函数，<span class="language-math">\lambda_A</span>为归一化参数。</p>
+<p id="20210507152945-rpbpc47" updated="20210507205429">常见字典学习算法：</p>
+<table id="20210507152945-ic5ldk7" updated="20210422100543">
+<thead>
+<tr>
+<th>算法</th>
+<th>主要思想</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.cns.nyu.edu/~tony/vns/readings/olshausen-field-1996.pdf">Sparsenet</a></td>
+<td>最大似然估计</td>
+</tr>
+<tr>
+<td><a href="https://ieeexplore.ieee.org/abstract/document/760624/">MOD</a></td>
+<td><span class="language-math">l_o</span>范数衡量稀疏性<br />最小均方误差</td>
+</tr>
+<tr>
+<td><a href="https://freddy.cs.technion.ac.il/wp-content/uploads/2017/12/K-SVD-An-Algorithm-for-Designing-Overcomplete.pdf">K-SVD</a></td>
+<td>正交匹配追踪(OMP)<br />奇异值分解(SVD)</td>
+</tr>
+<tr>
+<td><a href="https://www.jmlr.org/papers/volume11/mairal10a/mairal10a.pdf">ODL</a></td>
+<td>每次迭代仅处理一个样本</td>
+</tr>
+</tbody>
+</table>
+<p id="20210507154906-hgnqsj2"></p>
+<blockquote id="20210507154532-ddhqxry" updated="20210507154840">
+<p id="20210507154840-vwt4yjf" updated="20210507154859">练秋生, 石保顺, 陈书贞. <a href="http://www.aas.net.cn/fileZDHXB/journal/article/zdhxb/2015/2/PDF/2015-2-240.pdf">字典学习模型、算法及其应用研究进展</a>. 自动化学报, 2015, 41(2): 240−260</p>
+</blockquote>
+<p id="20210507154912-w3tgr7w"></p>
+<h1 id="20210507152949-l5qwt1t" updated="20210507154539">重构算法整理</h1>
+<h2 id="20210507154204-mt6fs4t" updated="20210507154213">贪婪算法</h2>
+<p id="20210507204245-blj2gae" updated="20210507205249">追求局部最优，计算速度较快。</p>
+<p id="20210507205256-vmx3yfx"></p>
+<h3 id="20210507154649-6pu3n18" updated="20210507155244">匹配追踪算法 MP</h3>
+<p id="20210507221012-sooorec" updated="20210507221013"><img src="https://b3logfile.com/siyuan/1605926113063/assets/image-20210507221012-okgu3i3.png" alt="image.png" /></p>
+<p id="20210507162933-1hnsr5q">从字典矩阵 D（也称为过完备原子库中），选择一个与信号 y 最匹配的原子(也就是某列)，构建一个稀疏逼近，并求出信号残差，然后继续选择与信号残差最匹配的原子，反复迭代，信号 y 可以由这些原子的线性和，再加上最后的残差值来表示。很显然，如果残差值在可以忽略的范围内，则信号 y 就是这些原子的线性组合。</p>
+<p id="20210507220148-9k0on3f"></p>
+<h3 id="20210507155245-tayf673" updated="20210507171917">正交匹配追踪算法 OMP</h3>
+<p id="20210507221030-eqtlh7v" updated="20210507221031"><img src="https://b3logfile.com/siyuan/1605926113063/assets/image-20210507221031-ahy372m.png" alt="image.png" /></p>
+<p id="20210507164721-8rnubud" updated="20210507164740">OMP 算法是在 MP 算法的基础上进行改进的，其挑选原子的标准和 MP 算法一致，也就是在训练字典 A 里挑选和测试样本 x 最为匹配的字典原子。不相同之处在于：OMP 算法在每一次迭代过程中对所挑选的全部原子先要执行 Schmidt 正交化操作，来确保每一次循环结果都是最优解。使得在同等精度的条件下，OMP 算法的性能更好，其收敛速度也更快。</p>
+<p id="20210507164721-xhuv173" updated="20210507215844">OMP 每次迭代均只选择与残差最相关的一列。</p>
+<blockquote id="20210507165440-were82x">
+<p id="20210507165440-05nj915" updated="20210507165643"><a href="https://blog.csdn.net/ikhui7/article/details/103673013">压缩感知——浅析匹配追踪算法（Matching Pursuit，MP）与正交匹配追踪算法（Orthogonal Matching Pursuit，OMP）</a></p>
+</blockquote>
+<p id="20210507221636-t90ve3u" updated="20210508103806">MP 算法与 OMP 算法具有相同的最优原子选择策略, 每次迭代均以测量矩阵<span class="language-math">\phi</span>中与当次冗余向量<span class="language-math">r_{t-1}</span> 具有最大内积的列向量作为待估信号的支撑候选. 但是两者在残差信号的更新方式上不同, MP 算法由其最新误差<span class="language-math">r_t</span> 与当次所选原子<span class="language-math">\phi \lambda_t</span>的正交性(<span class="language-math">\left \langle r_t,φλ_t \right \rangle = \left \langle r_{t-1}-a_t,  \phi \lambda_t \right \rangle\ge 0</span>) 来保证算法的收敛性, 然而这点仅保证了冗余向量<span class="language-math">r_t</span>与<span class="language-math">\phi \lambda_ t</span>的正交性,而不能保证<span class="language-math">r_t</span> 与已选原子集合<span class="language-math">{\phi \lambda_1,\phi \lambda_2,\ldots,\phi \lambda_n}</span>的正交性, 这使得 MP 求得的近似解在最优 K 项近似的意义下都是次最优的, 这也是 MP 算法需要较多次数的迭代才能保证收敛的原因. OMP 算法通过递归的对已选原子集合正交化(见算法 2 中的第 4 步) 求出正交投影<span class="language-math">P_t</span>, 利用<span class="language-math">r_t = y_¡ P_ty</span> 的残差更<br />
+新方式,克服了 MP 算法的次最优性.</p>
+<p id="20210507215854-7711yf8" updated="20210507221636">OMP 与 MP 的共同缺点在于原子选择机制相对于新的冗余误差的非最优性, 也就是说待选原子一旦进入支撑候选中, 则永久添加不会再被删除, 缺少“回溯”的思想. 这里“回溯”表示在当前迭代的步骤中, 仍对上次迭代中所入选的原子进行同步检验, 如果仍然满足当次最优意义则保留, 否则剔除作为下次待选. 其意义在于它可以最大程度保证重建的全局最优性, 因为在某次迭代中达到贪婪条件的原子并不能保证在以后迭代步骤中仍能达到, 所有原子都应做到“删除”和“添加”自由, 这种思想在后续产生的多种贪婪算法中得到了广泛的应用.</p>
+<p id="20210507220153-3cyt4kx"></p>
+<h3 id="20210507220152-xe95dmf" updated="20210507221048">后退型最优正交匹配 IBOOMP.</h3>
+<p id="20210507221048-sukhg2j" updated="20210507221050"><img src="https://b3logfile.com/siyuan/1605926113063/assets/image-20210507221049-qhtk4we.png" alt="image.png" /></p>
+<p id="20210507220312-s36ggps" updated="20210507221117">针对 OMP 中原子选择机制的缺点并引入简单的“回溯”思想,提出 IBOOMP 算法。模拟实验证明: IBOOMP 算法在相对误差一定的条件下较大程度地减少了重建对测量次数的要求,但是它与 MP 及 OMP 具有相同的最优原子选择机制, 每次迭代只选择一个原子, 为进一步提高重建速度及重建精度, 一次迭代选择多个原子的思想被采用到贪婪算法中.</p>
+<blockquote id="20210507220159-vr0ptrv" updated="20210507220201">
+<p id="20210507220201-td5xvd5" updated="20210507220232">方红,章权兵,韦穗.<a href="https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&amp;dbname=CJFD2008&amp;filename=HNLG200808006&amp;v=%25mmd2FDU%25mmd2B%25mmd2FALPY8vu%25mmd2Fo5P6dNxDcDBlmnh2f0wlau2XI95EM%25mmd2FcNYoD1rmIUZbEAY%25mmd2FsRVP3">改进的后退型最优正交匹配追踪图像重建方法</a>[J].华南理工大学学报(自然科学版),2008(08):23-27.</p>
+</blockquote>
+<p id="20210507215829-ckldfqf"></p>
+<h3 id="20210507155321-9mb969u" updated="20210507155330">正则正交匹配追踪算法 ROMP</h3>
+<p id="20210507221143-l674uha" updated="20210507221144"><img src="https://b3logfile.com/siyuan/1605926113063/assets/image-20210507221143-w9b6ftq.png" alt="image.png" /></p>
+<p id="20210507165655-vc53k8l" updated="20210507204446">MP 与 OMP 受矩阵列向量间相关性影响较大，而 ROMP 算法可以通过选择替代信号的最大元素并采用正则化的方式来确保没有太多的错误元素被选择，在每次迭代的过程中可以选多几个原子，ROMP 算法比 OMP 算法更快速且重构结果更加均衡稳定。</p>
+<p id="20210507203432-8jdzhdb" updated="20210507203440"><a href="https://blog.csdn.net/xiaoma_xiaoma/article/details/67005296">Matlab 实现</a></p>
+<blockquote id="20210507170014-6xr10db" updated="20210507170016">
+<p id="20210507170016-skjljwu" updated="20210507170028">D. Needell and R. Vershynin, &quot;<a href="https://ieeexplore.ieee.org/document/5419092">Signal Recovery From Incomplete and Inaccurate Measurements Via Regularized Orthogonal Matching Pursuit,</a>&quot; in <em>IEEE Journal of Selected Topics in Signal Processing</em> , vol. 4, no. 2, pp. 310-316, April 2010, doi: 10.1109/JSTSP.2010.2042412.</p>
+</blockquote>
+<p id="20210507220843-3eh64wz"></p>
+<h3 id="20210507172522-ui5k5yi" updated="20210507204616">子空间追踪 SP</h3>
+<p id="20210507221150-ikxe4r3" updated="20210507221152"><img src="https://b3logfile.com/siyuan/1605926113063/assets/image-20210507221151-zpb59gy.png" alt="image.png" /></p>
+<p id="20210507203753-jvhsi4p" updated="20210508103613">ROMP 和 SP 具有相同的原子选择机制, 每次迭代都以<span class="language-math">\phi^Ty_r</span>(Tyr 表示当前冗余) 中前 m 个绝对值最大的非零坐标所对应的原子作为候选; 其中,ROMP 利用正则化的方法找出候选原子集合中能量最大的原子集合<span class="language-math">J_0%</span>, 在所有支撑集为<span class="language-math">J_0</span> 的稀疏信号中利用最小二乘法找出使得<span class="language-math">||y-\phi x||_{l_2}</span>最小的解 x 作为当前估计, 并以<span class="language-math">y -\phi x</span>作为残差更新公式, 没有”回溯” 的思想, 每次迭代都在一个“可靠” 候选集中选择出满足正则条件的原子添加到上次迭代中, 并且这些原子一直保持到迭代停止. SP 与 ROMP 在残差更新方式上则不同, 它以相邻两次迭代冗余的差作为迭代停止条件, 每次迭代中在当次迭代支撑和前次迭代支撑集合的并集( <span class="language-math">T’</span>)上利用最小二乘求出当前估计<span class="language-math">x=  y</span>, 可见 SP 采用了“回溯”思想, 与 ROMP 相比更好地保证了重建的最优性.</p>
+<p id="20210507204058-1i3cpl4" updated="20210507204104"><a href="https://blog.csdn.net/weixin_30576827/article/details/97729025">Matlab 实现</a></p>
+<blockquote id="20210507203841-kwezvf6" updated="20210507203844">
+<p id="20210507203844-7yep41v" updated="20210507203924">Dai W, Milenkovic O. <a href="https://arxiv.org/pdf/0803.0811">Subspace pursuit for compressive sensing signal reconstruction</a>[J]. IEEE transactions on Information Theory, 2009, 55(5): 2230-2249.</p>
+</blockquote>
+<p id="20210507204501-1i461pu"></p>
+<h3 id="20210507173251-fiahf0o" updated="20210507201619">逐步正交匹配追踪 StOMP</h3>
+<p id="20210507221312-53ks6up" updated="20210507221313"><img src="https://b3logfile.com/siyuan/1605926113063/assets/image-20210507221313-l2kkjc3.png" alt="image.png" /></p>
+<p id="20210507201621-7zbr7a9" updated="20210507202635">StOMP 算法也是基于 OMP 进行改进的，每次迭代可以选择多个原子。但它的输入参数没有信号稀疏度 K，因此跟 ROMP 和 CoSaMP 有自己的优势。</p>
+<p id="20210507205355-zumyo2z" updated="20210507205401"><a href="https://blog.csdn.net/jbb0523/article/details/45441601">Matlab 实现</a></p>
+<blockquote id="20210507201621-yypv043" updated="20210507202640">
+<p id="20210507202640-b2qwe45" updated="20210507221300">Donoho D L, Tsaig Y, Drori I, et al. <a href="https://statistics.stanford.edu/sites/g/files/sbiybj6031/f/2006-02.pdf">Sparse solution of underdetermined linear equations by stagewise orthogonal matching pursuit, submitted to</a>[C]//IEEE Trans. on Information theory. 2006.</p>
+</blockquote>
+<p id="20210507202839-7k8rv55"></p>
+<h3 id="20210507173251-i0abnvm" updated="20210507173753">压缩感知匹配追踪 CoSaMP</h3>
+<p id="20210507221338-y0gqlru" updated="20210507221338"><img src="https://b3logfile.com/siyuan/1605926113063/assets/image-20210507221338-u5ruiq6.png" alt="image.png" /></p>
+<p id="20210507173604-f78mn2z" updated="20210507221426">CoSaMP 也是对 OMP 的一种改进，每次迭代选择多个原子，除了原子的选择标准之外，它有一点不同于 ROMP：<br />
+ROMP 每次迭代已经选择的原子会一直保留，而 CoSaMP 每次迭代选择的原子在下次迭代中可能会被抛弃。</p>
+<blockquote id="20210507173801-09378f6" updated="20210507173802">
+<p id="20210507173802-626kgip" updated="20210507173854">Needell D, Tropp J A. CoSaMP: <a href="https://www.sciencedirect.com/science/article/pii/S1063520308000638/pdf?md5=36bc2c5ba3a3c2998d9f353469f90c43&amp;pid=1-s2.0-S1063520308000638-main.pdf">Iterative signal recovery from incomplete and inaccurate samples</a>[J]. Applied and computational harmonic analysis, 2009, 26(3): 301-321.</p>
+</blockquote>
+<p id="20210507221426-lrqrudb" updated="20210508103833">StOMP 与 CoSaMP 在本质上都采用了“代理”的思想, 即如果测量矩阵满足限制等容常数<span class="language-math">\delta_m &lt;&lt; 1</span>, 则向量<span class="language-math">v = \phi^T\phi x = φ^Ty</span> 可以看做待估信号 x 的一个“代理”, 其合理性在于: 根据 RIC 的定义, 当<span class="language-math">\delta_m &lt;&lt; 1</span> 时, v 中每 m 个元素构成的集合所包含的信息近似于 x 中 m 个元素所构成的集合,那么从 v 中前 m 个最大元所对应的支撑也应该对应于这些元素在 x 中的支撑. StOMP 与 CoSaMP 的区别在于最优匹配原子的选择机制不同, StOMP 通过设立软阈值<span class="language-math">h = t_s\delta_s</span> 直接判断入选的原子集合, 利用最小二乘求出待估信号在所得支撑上的系数, 其缺点在于阈值参数选择较难; CoSaMP 则在每次迭代中计算代理信号(即<span class="language-math">φ^Tr_{s-1}</span>) 中前 2m 个最大元所对应的支撑与前次逼近解的支撑并作为当次候选支撑, 再利用最小二乘求出该支撑上的系数估计. 从算法 6 的第 4) 步和算法 7 的第 3) 步可以看出两者都采用了“回溯”思想.</p>
+<p id="20210507203728-ko4116o"></p>
+<h3 id="20210507201536-zoiw4sz" updated="20210507204514">分段弱正交匹配追踪 SWOMP</h3>
+<p id="20210507204515-3chyzlm" updated="20210507204604">SWOMP 可以说是 StOMP 的一种改进算法，它们的唯一不同是选择原子时的门限设置，这可以降低对测量矩阵的要求。我们称这里的原子选择方式为“弱选择”。</p>
+<p id="20210507204622-x7b3uwc" updated="20210507204637"><a href="https://blog.csdn.net/jbb0523/article/details/45675735">Matlab 实现</a></p>
+<blockquote id="20210507204604-07fbw70" updated="20210507204607">
+<p id="20210507204607-eidd0p2" updated="20210507204912">Blumensath T, Davies M E. <a href="https://www.pure.ed.ac.uk/ws/portalfiles/portal/17821349/BD_SWGP.pdf">Stagewise weak gradient pursuits</a>[J]. IEEE Transactions on Signal Processing, 2009, 57(11): 4333-4346.</p>
+</blockquote>
+<p id="20210507220906-gj5pgxj"></p>
+<h3 id="20210507201620-4ahsydz" updated="20210507202848">广义正交匹配追踪 GOMP</h3>
+<p id="20210507202851-xxzy1po" updated="20210507202942">GOMP 可视为 OMP 算法的推广，OMP 每次只选择与残差相关最大的一个，而 GOMP 则是简单地选择最大的 S 个。</p>
+<p id="20210507203333-xqluydr" updated="20210507203346"><a href="https://blog.csdn.net/yuehuihui00/article/details/78327119">Matlab 实现</a></p>
+<blockquote id="20210507202851-7s36pnq" updated="20210507203251">
+<p id="20210507203251-zhfbblq" updated="20210507203302">Wang J, Kwon S, Shim B. <a href="https://arxiv.org/pdf/1111.6664">Generalized orthogonal matching pursuit</a>[J]. IEEE Transactions on signal processing, 2012, 60(12): 6202-6216.</p>
+</blockquote>
+<p id="20210507220856-ngroevx"></p>
+<h3 id="20210507155331-ckqcptn" updated="20210507172521">稀疏度自适应匹配追踪 SAMP</h3>
+<p id="20210507173105-ipmiynf">SAMP 提出了一种不需要输入稀疏度 K 的算法，通过设置步长（很大程度影响速度、小程度影响精度）和合适的停止条件（很大程度影响精度）来进行稀疏度的估计和支撑集的填充。</p>
+<p id="20210507205007-tyki88u" updated="20210507205013"><a href="https://blog.csdn.net/yuehuihui00/article/details/78327079">Matlab 实现</a></p>
+<blockquote id="20210507173106-0stz4gv" updated="20210507173108">
+<p id="20210507173108-a39sson" updated="20210507173135">Do T T, Gan L, Nguyen N, et al. <a href="https://apps.dtic.mil/sti/pdfs/ADA528509.pdf">Sparsity adaptive matching pursuit algorithm for practical compressed sensing</a>[C]//2008 42nd Asilomar conference on signals, systems and computers. IEEE, 2008: 581-587.</p>
+</blockquote>
+<p id="20210507204505-sy0aa8i"></p>
+<h2 id="20210507154213-7f7r72u" updated="20210507210235">凸松弛类算法</h2>
+<p id="20210507161024-ciqykya" updated="20210508101737">稀疏表征模型在将 <span class="language-math">l_0</span> 范数替换为 <span class="language-math">l_1</span> 范数后约束优化问题形式（LS 问题）：</p>
+<div class="language-math" id="20210507160337-p97s4fh" updated="20210507160614">\min_x ||x||_1 \ \  s.t. ||y-\Phi x||_2&lt;\sigma</div>
+<p id="20210507161054-a6is91i" updated="20210507161108">非约束优化问题形式：</p>
+<div class="language-math" id="20210507161109-18chfa0" updated="20210507161143">\min_x  ||y-\Phi x||_2+\lambda||x||_1</div>
+<p id="20210507155519-zfj5uni" updated="20210507210316">Candes，Tao 和 Donoho 等人已证明，当测量矩阵 Φ 满足约束等距性质( Restricted IsometryProperty，RIP) 时，组合优化问题( <span class="language-math">l_0</span> 优化问题) 可转化为数值上容易处理 <span class="language-math">l_1</span> 约束的凸优化问题</p>
+<blockquote id="20210507155519-zfj5uni" updated="20210507160255">
+<p id="20210507160255-arq8pvd" updated="20210507210053">李珅, 马彩文, 李艳, 等. <a href="https://www.cnki.com.cn/Article/CJFDTotal-HWYJ2013S1044.htm">压缩感知重构算法综述</a>[D]. , 2013.</p>
+</blockquote>
+<p id="20210507205301-7i4e3a8"></p>
+<h3 id="20210507205241-2yiod4p" updated="20210507210003">基追踪算法</h3>
+<p id="20210507210422-ha95oo0" updated="20210507210814"><span class="language-math">l_1</span> 范数约束优化问题等价于下面的线性规划问题：</p>
+<div class="language-math" id="20210507210422-do0gd63" updated="20210507210424">\min c^{\mathrm{T}}x \quad Ax = b, \; x \geq 0</div>
+<p id="20210507210021-pqr7aii" updated="20210507210750"><a href="https://blog.csdn.net/theonegis/article/details/78268737">Matlab 实现</a></p>
+<blockquote id="20210507210003-mhnp891" updated="20210507210005">
+<p id="20210507210005-9woqkku" updated="20210507210017">Chen S S, Donoho D L, Saunders M A.<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.37.4272&amp;rep=rep1&amp;type=pdf"> Atomic decomposition by basis pursuit</a>[J]. SIAM review, 2001, 43(1): 129-159.</p>
+</blockquote>
+<p id="20210507210853-ui6rjm8"></p>
+<h3 id="20210507205241-ih86us3" updated="20210507212034">迭代加权最小二乘法 IRLS</h3>
+<p id="20210507211041-isa4b7y">核心思想是通过将 L0-norm 松弛化（relaxation），把高度不连续的问题松弛化为连续的甚至是光滑逼近（smooth approximation）。</p>
+<blockquote id="20210507211454-dpouyi9" updated="20210507211455">
+<p id="20210507211455-hbdys9b" updated="20210507211508">Gorodnitsky I F, Rao B D. <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.377.4301&amp;rep=rep1&amp;type=pdf">Sparse signal reconstruction from limited data using FOCUSS: A re-weighted minimum norm algorithm</a>[J]. IEEE Transactions on signal processing, 1997, 45(3): 600-616.</p>
+<p id="20210507212410-wdi9019" updated="20210507212418"><a href="https://blog.csdn.net/maum61/article/details/87019858">详解</a></p>
+</blockquote>
+<p id="20210507211535-rd3i8d4" updated="20210507212910"></p>
+<h3 id="20210507212905-0nhgjhd" updated="20210507214623">迭代硬/软阈值算法 IHT/IST、二步迭代软阈值算法 TwIST</h3>
+<p id="20210507213254-wswauer" updated="20210507214315">其核心思想均为 <a href="https://blog.csdn.net/jbb0523/article/details/52134630">Majorization-Minimization 思想</a>，使用一个易优化的函数在一定条件下无限逼近原函数的最优解。</p>
+<p id="20210507214036-5mf569c" updated="20210507214257">IHT 使用硬阈值函数，IST 使用软阈值函数，TwIST 为改进的 IST，收敛速度更快</p>
+<p id="20210507214259-uj1iehm" updated="20210507214339"><a href="https://blog.csdn.net/yuehuihui00/article/details/99877808">IST 的 Matlab 实现</a></p>
+<p id="20210507214342-1f3belv" updated="20210507214400"><a href="https://blog.csdn.net/jbb0523/article/details/52193209">TwIST 的 Matlab 实现</a></p>
+<blockquote id="20210507214402-uvderxr" updated="20210507214516">
+<p id="20210507214516-xrb6oqq" updated="20210507214525">Blumensath T, Davies M E. <a href="https://www.sciencedirect.com/science/article/pii/S1063520309000384/pdf?md5=eeeede2b5b88fdcae6120aa9a9a97086&amp;pid=1-s2.0-S1063520309000384-main.pdf&amp;_valck=1">Iterative hard thresholding for compressed sensing</a>[J]. Applied and computational harmonic analysis, 2009, 27(3): 265-274.</p>
+<p id="20210507214527-fjg1za8" updated="20210507214609">Bredies K, Lorenz D. <a href="https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.245.1143&amp;rep=rep1&amp;type=pdf">Iterative soft-thresholding converges linearly</a>[R]. Zentrum für Technomathematik, 2007.</p>
+<p id="20210507214611-o073pdi" updated="20210507214715">Bioucas-Dias J M, Figueiredo M A T. <a href="https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.142.2686&amp;rep=rep1&amp;type=pdf">A new TwIST: Two-step iterative shrinkage/thresholding algorithms for image restoration</a>[J]. IEEE Transactions on Image processing, 2007, 16(12): 2992-3004.</p>
+</blockquote>
+<p id="20210507215415-p261m3v" updated="20210507215559">其它迭代阈值算法：</p>
+<blockquote id="20210507215415-dykpul4" updated="20210507215417">
+<p id="20210507215418-4t4zxuv" updated="20210507215500">Yuan X T ,  Li P ,<br />
+Zhang T . <a href="https://www.jmlr.org/papers/volume18/14-415/14-415.pdf">Gradient hard thresholding pursuit</a>[J]. Journal of Machine<br />
+Learning Research, 2018, 18:1-43.</p>
+<p id="20210507215418-e0xfhcy" updated="20210507215519">杨海蓉, 方红, 张成,等. <a href="http://www.aas.net.cn/fileZDHXB/journal/article/zdhxb/2011/3/PDF/110303.pdf">基于回溯的迭代硬阈值算法</a>[J]. 自动化学报, 2011(03):276-282.(Yang H R<br />
+,  Fang H ,  Zhang C , et al. Iterative Hard Thresholding<br />
+Algorithm Based on Backtracking[J]. Acta Automatica Sinica, 2011,<br />
+37(3):276-282.)</p>
+<p id="20210507215418-j37op55" updated="20210507215539">Bahmani, Sohail, Raj,<br />
+et al. <a href="https://www.jmlr.org/papers/volume14/bahmani13a/bahmani13a.pdf">Greedy Sparsity-Constrained Optimization</a>.[J]. Journal of Machine<br />
+Learning Research, 2013.</p>
+<p id="20210507215418-1xztjlw" updated="20210507215618">杨立波, 蒋铁钢, 徐志强. <a href="http://www.joca.cn/CN/article/downloadArticleFile.do?attachType=PDF&amp;id=23467">基于混合梯度的硬阈值追踪算法</a>[J]. 计算机应用, 2020,<br />
+v.40;No.355(03):298-302.</p>
+</blockquote>
+<p id="20210507205240-vcbuq66"></p>
+<h2 id="20210507154234-q5a9r8d" updated="20210507214804">其它算法</h2>
+<h3 id="20210507154348-y7mwmmi" updated="20210508095451">稀疏贝叶斯算法 SBL</h3>
+<p id="20210507214956-jy6dp2e" updated="20210508095450">根据信号稀疏先验特性，将非线性优化问题转化为带有稀疏约束的线性回归问题的稀疏贝叶斯算法(SBL)，因其具有更高的重构精度被越来越多地用于压缩感知重构中。</p>
+<blockquote id="20210507170429-g0i1ukh" updated="20210507214958">
+<p id="20210507214958-p3m5vc7" updated="20210507215015">Wipf D P, Rao B D. <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/04244754.pdf">An empirical Bayesian strategy for solving the simultaneous sparse approximation problem</a>[J]. IEEE Transactions on Signal Processing, 2007, 55(7): 3704-3716.</p>
+</blockquote>
+<p id="20210508095501-7lamukn"></p>
+<h3 id="20210507215016-zvark6m" updated="20210508095904">近似消息传递算法 AMP</h3>
+<p id="20210508101433-u7cvw5g" updated="20210508101915">AMP 算法对 IST 算法作了改进，既具有迭代阈值算法的低复杂度，同时也具备基追踪算法较强的信号重构能力</p>
+<p id="20210508101343-d81f4z4" updated="20210508101429"><img src="https://b3logfile.com/siyuan/1605926113063/assets/image-20210508101429-edg3yol.png" alt="image.png" /></p>
+<blockquote id="20210508100559-ujzcc1e" updated="20210508101341">
+<p id="20210508101341-7tb0txi" updated="20210508104409">关于 AMP 算法的介绍：<a href="https://krzakala.github.io/cargese.io/AMP_Tutorial_18.pdf">AMP Tutorial</a></p>
+</blockquote>
+<blockquote id="20210508095905-fs5e3iw" updated="20210508100529">
+<p id="20210508100529-0anu4z5" updated="20210508100544">Donoho D L, Maleki A, Montanari A. <a href="https://www.pnas.org/content/pnas/106/45/18914.full.pdf">Message-passing algorithms for compressed sensing[J]. Proceedings of the National Academy of Sciences</a>, 2009, 106(45): 18914-18919.</p>
+</blockquote>
+<p id="20210508103954-6qxxkmt" updated="20210508104009">其它 AMP 算法：</p>
+<blockquote id="20210508104009-0e9hdfw" updated="20210508104010">
+<p id="20210508104010-5ox9wc5" updated="20210508104130"><strong>EP2AMP:</strong> Meng X, Wu S, Kuang L, et al. <a href="https://arxiv.org/pdf/1509.08658">Concise derivation of complex Bayesian approximate message passing via expectation propagation</a>[J]. arXiv preprint arXiv:1509.08658, 2015.</p>
+<p id="20210508104133-79v5jgq" updated="20210508104219"><strong>AMP-MMV:</strong> Ziniel J, Schniter P. <a href="https://arxiv.org/pdf/1111.5272">Efficient high-dimensional inference in the multiple measurement vector problem</a>[J]. IEEE Transactions on Signal Processing, 2012, 61(2): 340-354.</p>
+<p id="20210508104222-7hmaobt" updated="20210508104335"><strong>TAP-AMP:</strong> Krzakala F, Mézard M, Sausset F, et al. <a href="https://arxiv.org/pdf/1206.3953">Probabilistic reconstruction in compressed sensing: algorithms, phase diagrams, and threshold achieving matrices</a>[J]. Journal of Statistical Mechanics: Theory and Experiment, 2012, 2012(08): P08009.</p>
+</blockquote>
+<p id="20210508102120-fh1l3xc"></p>
+<h3 id="20210508100539-s788f80" updated="20210508102230">残差卷积神经网络 ResCNN</h3>
+<blockquote id="20210508102133-tq9eq2o" updated="20210508102235">
+<p id="20210508102235-24bk814" updated="20210508102257">Kim C, Park D, Lee H N. <a href="https://www.mdpi.com/1424-8220/20/3/594/pdf">Compressive sensing spectroscopy using a residual convolutional neural network</a>[J]. Sensors, 2020, 20(3): 594.</p>
+</blockquote>
+<p id="20210508102301-ucwasxq"></p>
+<h3 id="20210508102258-nrxi55o" updated="20210508102548">生成对抗网络 GAN</h3>
+<blockquote id="20210508102549-kw5zdqq" updated="20210508102612">
+<p id="20210508102612-cv06ndz" updated="20210508102624">Wu Y, Rosca M, Lillicrap T. <a href="http://proceedings.mlr.press/v97/wu19d/wu19d.pdf">Deep compressed sensing[C]//International Conference on Machine Learning</a>. PMLR, 2019: 6850-6860.</p>
+</blockquote>
+<p id="20210508102626-hz1dqiv"></p>
+</div>
+<script>
+    window.siyuan = {
+      config: { appearance: { mode: 0 }},
+      languages: {copy:"复制"}
+    };
+    const previewElement = document.getElementById('preview');
+    Vditor.codeRender(previewElement);
+    Vditor.highlightRender({"lineNumber":true,"style":"github"}, previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.mathRender(previewElement, {
+        cdn: "http://127.0.0.1:6806/stage/vditor",
+        math: {"inlineDigit":false,"engine":"MathJax"},
+    });
+    Vditor.mermaidRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.flowchartRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.graphvizRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.chartRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.mindmapRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.abcRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.plantumlRender(previewElement, "http://127.0.0.1:6806/stage/vditor");
+    Vditor.mediaRender(previewElement);
+    document.querySelectorAll(".vditor-copy").forEach((item) => {
+      item.addEventListener("click", (event) => {
+            navigator.clipboard.writeText(item.nextElementSibling.textContent.trimEnd());
+            item.firstElementChild.setAttribute("aria-label", "已复制");
+            event.preventDefault();
+            event.stopPropagation();
+      })
+    });
+</script></body></html>
