@@ -1,0 +1,76 @@
+body{
+    background-color: rgb(41, 41, 41);
+    color: white;
+    font-family: sans-serif;
+    margin: 0px;
+    overflow-x: hidden;
+}
+h1{
+    font-size: 200%;
+}
+a{
+    color: blanchedalmond;
+}
+canvas{
+    border: cyan 1px solid;
+}
+#header{
+    font-weight: bold;
+    background-color: teal;
+    font-size: 200%;
+    padding: 4px;
+    padding-top: 8px;
+    position: sticky;
+    width: 100%;
+    top: 0px;
+}
+#header a{
+    text-decoration: none;
+    color: white;
+}
+#sidebar{
+    /*background-color: darkslategray;*/
+    width: 200px;
+    float: left;
+    margin-right: 4px;
+    padding: 4px;
+    /*box-shadow: 2px 2px 2px #000000;*/
+}
+#content{
+    margin: 8px;
+    float: left;
+    width: 800px;
+}
+#footer{
+    background-color: teal;
+    clear: both;
+    text-align: center;
+}
+#ol{
+    text-decoration: overline;
+}
+#lt{
+    text-decoration: line-through;
+}
+#ul{
+    text-decoration: underline;
+}
+.linkblock{
+    display: block;
+    text-decoration: none;
+    width: 80px;
+    margin: 4px;
+}
+.linkblock a{
+    text-decoration: none;
+    color: unset;
+}
+.linkblock a:hover{
+    background-color: slategrey;
+}
+#github{
+    color: white;
+}
+#bili{
+    color: white;
+}
