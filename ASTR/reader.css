@@ -182,6 +182,10 @@
         width: 300px;
         background-color: rgb(90, 58, 58);
     }
+    .nameblock{
+        width: 150px;
+        word-wrap: break-word;
+    }
     .topButton{
         font-size: 40px;
     }

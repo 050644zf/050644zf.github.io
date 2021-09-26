@@ -87,8 +87,11 @@ canvas{
 }
 @media (max-width: 1000px){
     #content{
-        margin-left: unset;
+        margin-left: 5%;
         width: 90%;
+        font-size: 30px;
+    }
+    #content{
         font-size: 30px;
     }
     .sidebar{
