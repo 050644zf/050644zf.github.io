@@ -192,4 +192,13 @@
     .menuButton{
         font-size: 40px;
     }
+    .eventname{
+        font-size: 40px;
+    }
+    .story{
+        font-size: 30px;
+    }
+    .storycode{
+        font-size: 10px;
+    }
 }
