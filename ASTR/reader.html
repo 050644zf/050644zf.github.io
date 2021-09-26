@@ -14,29 +14,33 @@
 
         <div id="header" class="header">
             Arknights Story Text Reader 
-            <span style="font-size: medium;font-weight: normal;">v0.1 by nightsky#3319 on <a href="https://discord.gg/rihq" style="font-weight: bold;text-decoration: underline;">Rhodes Island HQ</a></span>
+            <span style="font-size: medium;font-weight: normal;">v0.2 by nightsky#3319 on <a href="https://discord.gg/rihq" style="font-weight: bold;text-decoration: underline;">Rhodes Island HQ</a></span>
         </div>
         <div id="warning" class="warning" onclick="this.style.display = 'none'">
             Arknights Story Text Reader is currently under development. The interface and features may receive great changes in the future. If you have any issues or feedbacks please summit it <a href="https://github.com/050644zf/ArknightsStoryTextReader/issues">here.</a></br>
             </br>
             <b>Click this message to remove it.</b>
         </div>
-        <div id="sidebar" class="sidebar" style="width: 400px; max-height: 800px; overflow-y: scroll; position: relative;">
-            <div id="currentLang" class="currentLang">
-                {{i18n.currentLang[lang]}}: {{i18n.langs[lang]}}
-                <div id="langSelect" class="langSelect">
-                    <div  v-for="(langtext,langCode,lidx) in i18n.langs" @click="langSwitch(langCode)">
-                        {{langtext}}
+        <div id="sidebar">
+            <div class="menuButton" @click="showMenu=!showMenu">MENU</div>
+            <div :class="{sidebar:true, sidebarhidden:!showMenu}" >
+                <div id="currentLang" class="currentLang">
+                    {{i18n.currentLang[lang]}}: {{i18n.langs[lang]}}
+                    <div id="langSelect" class="langSelect">
+                        <div  v-for="(langtext,langCode,lidx) in i18n.langs" @click="langSwitch(langCode)">
+                            {{langtext}}
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div v-for="(events, eventType, ETidx) in eventList" class="eventType">
-                <div class="eventtype">{{i18n[eventType][lang]}}</div>
                 
-                <eventmenu v-for="(event, eventid, Eidx) in events" class="event" :id="eventid" :event="event" :sl="sl" :lang="lang"></eventmenu>
+                <div v-for="(events, eventType, ETidx) in eventList" class="eventType">
+                    <div class="eventtype">{{i18n[eventType][lang]}}</div>
+                    
+                    <eventmenu v-for="(event, eventid, Eidx) in events" class="event" :id="eventid" :event="event" :sl="sl" :lang="lang" @hidemenu="showMenu=false"></eventmenu>
+                </div>
             </div>
         </div>
+        
            
         <div class="topButton" onclick="document.getElementById('header').scrollIntoView({behavior: 'smooth'})">TOP</div>
 
@@ -75,7 +79,7 @@
                 <div class="event">
                     <div :class="{eventname:true, eventnamehl:!collapsed}" @click="collapsed = !collapsed" >{{event.name}}</div>
                     <div class="stories" v-show="!collapsed">
-                        <div v-for="(story, STidx) in event.infoUnlockDatas" class="story" @click="loadStory(sl, lang, story.storyTxt)">
+                        <div v-for="(story, STidx) in event.infoUnlockDatas" class="story" @click="$emit('hidemenu');loadStory(sl, lang, story.storyTxt, showMenu)">
                             <div class="storycode">{{story.storyCode}}  {{story.avgTag}} </div>
                             <div class="storyname">{{story.storyName}}</div>
                         </div>
@@ -137,7 +141,8 @@
                             eventList: {},
                             lang: l,
                             sl: storylist,
-                            i18n: i18n 
+                            i18n: i18n,
+                            showMenu: true
                         }
                     },
                     methods:{
@@ -148,7 +153,8 @@
                     components:{
                         eventmenu:{
                             template:'#eventmenu',
-                            props:['event','eventid','sl','lang'],
+                            props:['event','eventid','sl','lang','showMenu'],
+                            emits:['hidemenu'],
                             data(){
                                 return{
                                     collapsed: true
@@ -156,6 +162,7 @@
                             },
                             methods:{
                                 loadStory(sl, lang, path){
+                                    storylist.data = {eventName: 'Loading...'};
                                     $.getJSON("https://raw.githubusercontent.com/050644zf/ArknightsStoryJson/main/"+lang+'/gamedata/story/'+path+'.json').done(function(s){storylist.data = s;}).fail(function(){storylist.data = {eventName: 'Error on loading json file!'};})
                                 }
                             }

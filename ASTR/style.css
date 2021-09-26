@@ -28,16 +28,27 @@ canvas{
     text-decoration: none;
     color: white;
 }
-#sidebar{
+.sidebar{
     /*background-color: darkslategray;*/
-    width: 30%;
-    float: left;
+    background-color: rgb(22, 22, 22);
+    width: 50%;
     margin-right: 4px;
     padding: 4px;
+    max-height: 100%; 
+    overflow-y: scroll; 
+    overflow-x: clip;
+    word-wrap: normal;
+    position: fixed;
+    transition: width 0.5s;
     /*box-shadow: 2px 2px 2px #000000;*/
+}
+.sidebarhidden{
+    width: 0%;
 }
 #content{
     margin: 8px;
+    margin-left: 15%;
+    
     float: left;
     width: 800px;
 }
@@ -73,4 +84,17 @@ canvas{
 }
 #bili{
     color: white;
+}
+@media (max-width: 1000px){
+    #content{
+        margin-left: unset;
+        width: 90%;
+        font-size: large;
+    }
+    .sidebar{
+        width: 80%;
+    }
+    .sidebarhidden{
+        width: 0%;
+    }
 }
