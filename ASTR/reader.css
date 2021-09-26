@@ -178,6 +178,14 @@
 }
 @media (max-width: 1000px){
     .warning{
-        font-size: small;
+        font-size: 20px;
+        width: 300px;
+        background-color: rgb(90, 58, 58);
+    }
+    .topButton{
+        font-size: 40px;
+    }
+    .menuButton{
+        font-size: 40px;
     }
 }

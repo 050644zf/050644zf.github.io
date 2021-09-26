@@ -89,7 +89,7 @@ canvas{
     #content{
         margin-left: unset;
         width: 90%;
-        font-size: large;
+        font-size: 30px;
     }
     .sidebar{
         width: 80%;
