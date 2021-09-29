@@ -27,12 +27,12 @@
             <b>Click this message to remove it.</b>
         </div>
         
-        <span class="material-icons topButton" onclick="document.getElementById('header').scrollIntoView({behavior: 'smooth'})">vertical_align_top</span>
+        <span class="material-icons topButton" onclick="document.getElementById('storydata').scrollIntoView({behavior: 'smooth', block:'center'})">vertical_align_top</span>
 
         <div id='content' class="content">
 
             <div id="list-rendering">
-                <div class="storydata">
+                <div class="storydata" id="storydata">
                     {{data.eventName}}  {{data.storyCode}}  {{data.avgTag}}  {{data.storyName}}
                 </div>
                   <div v-for="line in data.storyList" :key="line.id" class="line" :id="'line'+line.id">
