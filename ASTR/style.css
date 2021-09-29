@@ -1,3 +1,35 @@
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Material Icons'),
+      local('MaterialIcons-Regular'),
+      url(MaterialIcons-Regular.ttf) format('truetype');
+  }
+.material-icons {
+font-family: 'Material Icons';
+font-weight: normal;
+font-style: normal;
+font-size: 24px;  /* Preferred icon size */
+display: inline-block;
+line-height: 1;
+text-transform: none;
+letter-spacing: normal;
+word-wrap: normal;
+white-space: nowrap;
+direction: ltr;
+
+/* Support for all WebKit browsers. */
+-webkit-font-smoothing: antialiased;
+/* Support for Safari and Chrome. */
+text-rendering: optimizeLegibility;
+
+/* Support for Firefox. */
+-moz-osx-font-smoothing: grayscale;
+
+/* Support for IE. */
+font-feature-settings: 'liga';
+}
 body{
     background-color: rgb(41, 41, 41);
     color: white;
@@ -22,6 +54,7 @@ canvas{
     padding-top: 8px;
     position: sticky;
     width: 100%;
+    height: 42px;
     top: 0px;
 }
 #header a{
@@ -39,6 +72,7 @@ canvas{
     overflow-x: clip;
     word-wrap: normal;
     position: fixed;
+    top: 62px;
     transition: width 0.5s;
     /*box-shadow: 2px 2px 2px #000000;*/
 }
@@ -48,8 +82,6 @@ canvas{
 #content{
     margin: 8px;
     margin-left: 15%;
-    
-    float: left;
     width: 800px;
 }
 #footer{
@@ -93,6 +125,7 @@ canvas{
     }
     .sidebar{
         width: 80%;
+        transition: none;
     }
     .sidebarhidden{
         width: 0%;
